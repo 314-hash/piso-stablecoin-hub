@@ -109,3 +109,4 @@ main().catch((err) => {
   console.error('Fatal minting error:', err);
   process.exit(1);
 });
+
