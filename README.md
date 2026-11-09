@@ -69,3 +69,4 @@ npm run dev
 ## 5. License Compliance & Attribution
 
 This project is licensed under the [MIT License](LICENSE). Third-party open-source components (OpenZeppelin, Ponder, Viem, Wagmi, Foundry, Ethereum-Lists, Blockscout, Uniswap) are acknowledged in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+

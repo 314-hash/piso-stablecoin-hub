@@ -137,3 +137,4 @@ export const TransferModal: React.FC<TransferModalProps> = ({ token, onClose }) 
     </div>
   );
 };
+

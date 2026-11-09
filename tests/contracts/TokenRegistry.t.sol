@@ -112,3 +112,4 @@ contract TokenRegistryTest is Test {
         );
     }
 }
+

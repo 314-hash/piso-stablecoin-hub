@@ -276,3 +276,4 @@ ponder.on('PisoStablecoin:EmergencyUnpaused', async ({ event, context }) => {
   const tokenAddress = event.log.address.toLowerCase();
   await Token.update({ id: tokenAddress, data: { isPaused: false } });
 });
+

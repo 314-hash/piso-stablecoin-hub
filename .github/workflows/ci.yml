@@ -1,0 +1,44 @@
+name: Continuous Integration & Verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build TypeScript SDK
+        run: npx tsc --project sdk/tsconfig.json
+
+      - name: Verify Backend TypeScript
+        run: npx tsc --project backend/tsconfig.json --noEmit
+
+      - name: Run Live PISO Chain Verification Suite
+        run: node tests/integration-test.mjs
+        env:
+          PISO_RPC_URL: 'https://rpc.pisochain.com'
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Run Foundry Smart Contract Tests
+        run: |
+          forge --version
+          forge test -vvv

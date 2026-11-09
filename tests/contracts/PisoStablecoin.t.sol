@@ -80,3 +80,4 @@ contract PisoStablecoinTest is Test {
         assertEq(token.balanceOf(bob), 1000);
     }
 }
+

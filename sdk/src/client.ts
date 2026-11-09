@@ -14,3 +14,4 @@ export function getPisoClient(rpcUrl: string = 'https://rpc.pisochain.com'): Pub
     }),
   });
 }
+

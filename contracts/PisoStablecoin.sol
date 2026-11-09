@@ -129,3 +129,4 @@ contract PisoStablecoin is IPisoStablecoin, ERC20, ERC20Burnable, ERC20Pausable,
         super._update(from, to, value);
     }
 }
+

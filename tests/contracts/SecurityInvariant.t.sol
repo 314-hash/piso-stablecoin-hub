@@ -70,3 +70,4 @@ contract StablecoinInvariantTest is Test {
         assertFalse(token.hasRole(token.MINTER_ROLE(), address(handler)));
     }
 }
+

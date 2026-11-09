@@ -21,3 +21,4 @@ interface IPisoStablecoin is IERC20 {
     function unpause() external;
     function rescueTokens(address tokenAddress, address to, uint256 amount) external;
 }
+

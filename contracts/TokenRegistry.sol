@@ -167,3 +167,4 @@ contract TokenRegistry is ITokenRegistry, AccessControl, Pausable, ReentrancyGua
         return _registeredTokens.length;
     }
 }
+

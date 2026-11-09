@@ -60,3 +60,4 @@ tokensRouter.get('/:address', (c) => {
 
   return c.json({ data: token });
 });
+

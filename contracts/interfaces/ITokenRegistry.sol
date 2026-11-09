@@ -61,3 +61,4 @@ interface ITokenRegistry {
     function getAllRegisteredTokens() external view returns (address[] memory);
     function getRegisteredTokenCount() external view returns (uint256);
 }
+

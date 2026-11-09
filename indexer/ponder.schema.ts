@@ -72,3 +72,4 @@ export default createSchema((p) => ({
     netSupplyChange: p.bigint(),
   }),
 }));
+

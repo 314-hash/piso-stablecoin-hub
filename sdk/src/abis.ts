@@ -40,3 +40,4 @@ export const pisoStablecoinAbi = parseAbi([
   'event EmergencyPaused(address indexed account)',
   'event EmergencyUnpaused(address indexed account)'
 ]);
+

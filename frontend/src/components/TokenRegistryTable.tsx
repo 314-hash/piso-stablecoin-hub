@@ -140,3 +140,4 @@ export const TokenRegistryTable: React.FC<TableProps> = ({ tokens, onSelectToken
     </div>
   );
 };
+

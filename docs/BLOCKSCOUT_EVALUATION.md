@@ -50,3 +50,4 @@ For operators with dedicated infrastructure, deploy using the bundled configurat
 # Launch Blockscout stack targeting PISO Chain
 docker compose -f docker-compose.blockscout.yml up -d
 ```
+

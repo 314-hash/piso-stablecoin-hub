@@ -46,3 +46,4 @@ Base URL: `http://localhost:3001/api/v1`
 ## 4. Reserve Transparency
 * **Endpoint:** `GET /reserves`
 * **Description:** Lists proof-of-reserve records, custodian identities, auditor reports, and collateral coverage percentages.
+

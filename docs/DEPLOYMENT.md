@@ -46,3 +46,4 @@ Open `http://localhost:3000` in your browser.
 - **Frontend:** Build with `npm run build` inside `frontend/` and deploy the `dist/` directory to **GitHub Pages**, **Cloudflare Pages**, or **Vercel** on their free tiers.
 - **Backend & Indexer:** Deploy to a lightweight self-hosted Linux VPS or free-tier container running Node.js and SQLite.
 - **RPC:** Uses public endpoint `https://rpc.pisochain.com` with zero query fees.
+

@@ -33,3 +33,4 @@ analyticsRouter.get('/timeseries', (c) => {
 
   return c.json({ data: history });
 });
+

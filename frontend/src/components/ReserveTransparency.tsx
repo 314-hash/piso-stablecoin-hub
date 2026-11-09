@@ -120,3 +120,4 @@ export const ReserveTransparency: React.FC<TransparencyProps> = ({ reserves }) =
     </div>
   );
 };
+

@@ -43,3 +43,4 @@ healthRouter.get('/', async (c) => {
     );
   }
 });
+

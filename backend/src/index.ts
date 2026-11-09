@@ -43,3 +43,4 @@ serve({
   fetch: app.fetch,
   port,
 });
+

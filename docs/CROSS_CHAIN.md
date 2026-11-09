@@ -17,3 +17,4 @@ Enable sovereign stablecoins (such as USDT, USDC, or PISOP) to seamlessly bridge
 1. **Phase 1 (Permissionless Mailbox):** Deploy Hyperlane `Mailbox.sol` to PISO Chain. Operators run validator agents to sign PISO Chain state attestations.
 2. **Phase 2 (Canonical Token Pools):** Deploy lock-and-mint / burn-and-mint token vaults with 24-hour timelocks on large redemption values (> 50,000 tokens) and daily velocity caps.
 3. **Phase 3 (Zero-Knowledge Proofs):** Evaluate state-proof verification once ZK light clients are supported on EVM.
+
