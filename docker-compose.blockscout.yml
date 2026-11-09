@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  blockscout-db:
+    image: postgres:15-alpine
+    container_name: piso-blockscout-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: blockscout
+      POSTGRES_USER: piso
+      POSTGRES_PASSWORD: piso_secure_password_replace_in_prod
+    volumes:
+      - blockscout-pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  blockscout-redis:
+    image: redis:7-alpine
+    container_name: piso-blockscout-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  blockscout-backend:
+    image: blockscout/blockscout:latest
+    container_name: piso-blockscout-backend
+    restart: unless-stopped
+    depends_on:
+      - blockscout-db
+      - blockscout-redis
+    environment:
+      ETHEREUM_JSONRPC_VARIANT: 'geth'
+      ETHEREUM_JSONRPC_HTTP_URL: 'https://rpc.pisochain.com'
+      CHAIN_ID: '2026001'
+      NETWORK: 'PISO Chain'
+      SUBNETWORK: 'Mainnet'
+      COIN: 'PISO'
+      COIN_NAME: 'PISO'
+      DATABASE_URL: 'postgresql://piso:piso_secure_password_replace_in_prod@blockscout-db:5432/blockscout?ssl=false'
+      ECTO_USE_SSL: 'false'
+      INDEXER_DISABLE_INTERNAL_TRANSACTIONS_FETCHER: 'true'
+      BLOCK_TRANSFORMER: 'base'
+      DISABLE_WEBAPP: 'false'
+    ports:
+      - "4000:4000"
+
+volumes:
+  blockscout-pgdata:
