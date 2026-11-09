@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/generated": ["./.ponder/codegen/index.ts"]
+    }
+  },
+  "include": ["src/**/*", "ponder.config.ts", "ponder.schema.ts"]
+}
