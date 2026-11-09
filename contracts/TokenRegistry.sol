@@ -51,34 +51,29 @@ contract TokenRegistry is ITokenRegistry, AccessControl, Pausable, ReentrancyGua
         if (_isRegistered[tokenAddress]) revert TokenAlreadyRegistered(tokenAddress);
         if (bytes(issuerName).length == 0) revert InvalidMetadata();
 
-        // Introspect ERC-20 metadata directly from contract
+        // Introspect ERC-20 metadata directly into storage
         IERC20Metadata token = IERC20Metadata(tokenAddress);
-        string memory tokenName = token.name();
-        string memory tokenSymbol = token.symbol();
-        uint8 tokenDecimals = token.decimals();
-
         uint64 currentTime = uint64(block.timestamp);
 
-        _tokens[tokenAddress] = StablecoinMetadata({
-            tokenAddress: tokenAddress,
-            name: tokenName,
-            symbol: tokenSymbol,
-            decimals: tokenDecimals,
-            issuerName: issuerName,
-            issuerWebsite: issuerWebsite,
-            reserveProofURI: reserveProofURI,
-            originalNetwork: originalNetwork,
-            provenance: provenance,
-            isVerified: false,
-            isDeprecated: false,
-            registeredAt: currentTime,
-            verifiedAt: 0
-        });
+        StablecoinMetadata storage meta = _tokens[tokenAddress];
+        meta.tokenAddress = tokenAddress;
+        meta.name = token.name();
+        meta.symbol = token.symbol();
+        meta.decimals = token.decimals();
+        meta.issuerName = issuerName;
+        meta.issuerWebsite = issuerWebsite;
+        meta.reserveProofURI = reserveProofURI;
+        meta.originalNetwork = originalNetwork;
+        meta.provenance = provenance;
+        meta.isVerified = false;
+        meta.isDeprecated = false;
+        meta.registeredAt = currentTime;
+        meta.verifiedAt = 0;
 
         _isRegistered[tokenAddress] = true;
         _registeredTokens.push(tokenAddress);
 
-        emit TokenRegistered(tokenAddress, tokenSymbol, issuerName, provenance, currentTime);
+        emit TokenRegistered(tokenAddress, meta.symbol, issuerName, provenance, currentTime);
     }
 
     /**
