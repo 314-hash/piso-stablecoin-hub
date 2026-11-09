@@ -1,0 +1,25 @@
+{
+  "name": "piso-stablecoin-hub",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Stablecoin Infrastructure, Indexing, and Analytics for PISO Chain",
+  "private": true,
+  "author": "314-hash",
+  "license": "MIT",
+  "scripts": {
+    "test:contracts": "forge test -vvv",
+    "test:indexer": "cd indexer && npm test",
+    "build:sdk": "cd sdk && npm run build",
+    "dev:indexer": "cd indexer && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.2.0",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
+
