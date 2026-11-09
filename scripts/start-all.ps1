@@ -23,7 +23,19 @@ try {
     Write-Warning "Could not reach https://rpc.pisochain.com directly: $($_.Exception.Message)"
 }
 
-# 2. Start Backend API in a separate job/process
+# 2. Check and clean port 3001 if occupied by a stale process
+$staleConns = Get-NetTCPConnection -LocalPort 3001 -ErrorAction SilentlyContinue
+if ($staleConns) {
+    foreach ($conn in $staleConns) {
+        if ($conn.OwningProcess -gt 0) {
+            Write-Host "Releasing port 3001 (killing stale process PID $($conn.OwningProcess))..." -ForegroundColor DarkGray
+            Stop-Process -Id $conn.OwningProcess -Force -ErrorAction SilentlyContinue
+        }
+    }
+    Start-Sleep -Seconds 1
+}
+
+# 3. Start Backend API in a separate process
 Write-Host "`n[2/3] Starting Backend API on http://localhost:3001..." -ForegroundColor Yellow
 $backendJob = Start-Process -FilePath "cmd.exe" -ArgumentList "/c cd backend && npx tsx src/index.ts" -PassThru -NoNewWindow
 
