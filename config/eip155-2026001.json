@@ -1,9 +1,7 @@
 {
   "name": "PISO Chain",
   "chain": "PISO",
-  "rpc": [
-    "https://rpc.pisochain.com"
-  ],
+  "rpc": ["https://rpc.pisochain.com"],
   "faucets": [],
   "nativeCurrency": {
     "name": "PISO",
@@ -23,4 +21,3 @@
     }
   ]
 }
-
