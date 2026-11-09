@@ -23,6 +23,7 @@
     "viem": "^2.21.0"
   },
   "devDependencies": {
+    "solc": "^0.8.38",
     "typescript": "^5.6.3"
   }
 }
