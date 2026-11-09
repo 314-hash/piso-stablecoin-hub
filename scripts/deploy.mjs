@@ -1,8 +1,12 @@
 import { createWalletClient, createPublicClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { pisoChain, tokenRegistryAbi, pisoStablecoinAbi } from '../sdk/dist/sdk/src/index.js';
-import * as dotenv from 'dotenv';
-dotenv.config();
+try {
+  const dotenv = await import('dotenv');
+  dotenv.config();
+} catch (e) {
+  // Native Node.js env fallback if dotenv is not present
+}
 
 /**
  * PISO Chain Deployment Script
@@ -60,3 +64,4 @@ main().catch((err) => {
   console.error('Fatal deployment error:', err);
   process.exit(1);
 });
+

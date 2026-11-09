@@ -42,3 +42,4 @@ jobs:
         run: |
           forge --version
           forge test -vvv
+

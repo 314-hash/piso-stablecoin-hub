@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { isAddress, parseUnits } from 'viem';
-import { pisoStablecoinAbi } from '../../../../sdk/src/abis';
+import { pisoStablecoinAbi } from '../../../sdk/src/abis';
 
 interface TransferModalProps {
   token: {

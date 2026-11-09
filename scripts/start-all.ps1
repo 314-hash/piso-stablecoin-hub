@@ -40,3 +40,4 @@ try {
         Stop-Process -Id $backendJob.Id -Force -ErrorAction SilentlyContinue
     }
 }
+

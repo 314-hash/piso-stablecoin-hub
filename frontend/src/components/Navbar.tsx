@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAccount, useConnect, useDisconnect, useChainId, useSwitchChain } from 'wagmi';
-import { pisoChain } from '../../../../config/chains';
+import { pisoChain } from '../../../config/chains';
 
 export const Navbar: React.FC = () => {
   const { address, isConnected } = useAccount();
