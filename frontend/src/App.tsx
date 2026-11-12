@@ -27,7 +27,7 @@ export const App: React.FC = () => {
       reserveProofURI: 'ipfs://bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi',
     },
     {
-      address: '0x2953399124F0cBB46d2CbACD8A89cF0599974963',
+      address: '0x9718B7611404Edc7D2F2F0c3B5C14204Ebe20B43',
       name: 'Tether USD (Bridged)',
       symbol: 'USDT',
       decimals: 6,
@@ -46,7 +46,7 @@ export const App: React.FC = () => {
   const [reserves, setReserves] = useState<any[]>([
     {
       symbol: 'PISOP',
-      tokenAddress: '0x1821F246a27287a2187E1D634B8883030fA14731',
+      tokenAddress: '0xeebb99cb2dd21fe53640034d3e16626ab68054a1',
       circulatingSupply: '50,000,000.00 PISOP',
       issuerReportedReservePHP: '50,150,000.00 PHP',
       independentlyVerifiedReservePHP: '50,150,000.00 PHP',
@@ -61,7 +61,7 @@ export const App: React.FC = () => {
     },
     {
       symbol: 'USDT',
-      tokenAddress: '0x2953399124F0cBB46d2CbACD8A89cF0599974963',
+      tokenAddress: '0x9718B7611404Edc7D2F2F0c3B5C14204Ebe20B43',
       circulatingSupply: '10,000,000.00 USDT',
       issuerReportedReserveUSD: '10,000,000.00 USD',
       independentlyVerifiedReserveUSD: '10,000,000.00 USD',

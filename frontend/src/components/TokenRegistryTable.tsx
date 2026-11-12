@@ -24,6 +24,28 @@ interface TableProps {
 export const TokenRegistryTable: React.FC<TableProps> = ({ tokens, onSelectToken }) => {
   const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
 
+  const handleAddToWallet = async (token: Token) => {
+    if (typeof window !== 'undefined' && (window as any).ethereum) {
+      try {
+        await (window as any).ethereum.request({
+          method: 'wallet_watchAsset',
+          params: {
+            type: 'ERC20',
+            options: {
+              address: token.address,
+              symbol: token.symbol,
+              decimals: token.decimals,
+            },
+          },
+        });
+      } catch (err) {
+        console.error('Failed to add token to wallet:', err);
+      }
+    } else {
+      alert('No Web3 wallet detected. Please connect MetaMask or SafePal.');
+    }
+  };
+
   const handleCopy = (address: string) => {
     navigator.clipboard.writeText(address);
     setCopiedAddress(address);
@@ -124,7 +146,14 @@ export const TokenRegistryTable: React.FC<TableProps> = ({ tokens, onSelectToken
                   {token.holderCount.toLocaleString()}
                 </td>
 
-                <td className="py-4 px-4 text-right font-sans">
+                <td className="py-4 px-4 text-right font-sans space-x-2 whitespace-nowrap">
+                  <button
+                    onClick={() => handleAddToWallet(token)}
+                    className="text-xs bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 px-2.5 py-1.5 rounded border border-emerald-700/50 transition inline-flex items-center space-x-1"
+                    title="Add directly to MetaMask or SafePal"
+                  >
+                    <span>🦊 Add to Wallet</span>
+                  </button>
                   <button
                     onClick={() => onSelectToken(token)}
                     className="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded border border-slate-700 transition"
