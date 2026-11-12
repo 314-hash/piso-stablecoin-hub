@@ -40,7 +40,7 @@ async function main() {
   });
 
   const isCurrentlyPaused = await publicClient.readContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'paused',
   });
@@ -63,7 +63,7 @@ async function main() {
   console.log(`Executing ${functionName}() on PISO Chain consensus...`);
 
   const txHash = await walletClient.writeContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName,
   });

@@ -5,10 +5,6 @@ import { createWalletClient, createPublicClient, http, parseUnits } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { pisoChain, pisoStablecoinAbi } from '../sdk/dist/sdk/src/index.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const rootDir = path.resolve(__dirname, '..');
-
 try {
   const dotenv = await import('dotenv');
   dotenv.config();
@@ -40,7 +36,7 @@ async function main() {
   }
 
   const account = privateKeyToAccount(privateKey.startsWith('0x') ? privateKey : `0x${privateKey}`);
-  const recipient = (process.env.RECIPIENT_ADDRESS || account.address) as `0x${string}`;
+  const recipient = process.env.RECIPIENT_ADDRESS || account.address;
   const amountStr = process.env.MINT_AMOUNT || '50000000'; // Default 50M
   const rpcUrl = process.env.PISO_RPC_URL || 'https://rpc.pisochain.com';
 
@@ -57,19 +53,19 @@ async function main() {
 
   // Query token decimals & symbol
   const decimals = await publicClient.readContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'decimals',
   });
 
   const symbol = await publicClient.readContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'symbol',
   });
 
   const currentSupply = await publicClient.readContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'totalSupply',
   });
@@ -84,7 +80,7 @@ async function main() {
 
   console.log('[1/2] Broadcasting mint transaction to PISO Chain...');
   const txHash = await walletClient.writeContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'mint',
     args: [recipient, parsedAmount],
@@ -95,7 +91,7 @@ async function main() {
   await publicClient.waitForTransactionReceipt({ hash: txHash });
 
   const newSupply = await publicClient.readContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'totalSupply',
   });
@@ -109,4 +105,3 @@ main().catch((err) => {
   console.error('Fatal minting error:', err);
   process.exit(1);
 });
-

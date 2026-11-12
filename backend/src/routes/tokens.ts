@@ -6,11 +6,11 @@ export const tokensRouter = new Hono();
 // Curated verified stablecoins on PISO Chain (fallback cache if indexer/contract is starting)
 const mockStablecoins = [
   {
-    address: '0x1821F246a27287a2187E1D634B8883030fA14731',
+    address: '0xeebb99cb2dd21fe53640034d3e16626ab68054a1',
     name: 'PISO Philippine Peso Stablecoin',
     symbol: 'PISOP',
     decimals: 18,
-    totalSupply: '50000000000000000000000000', // 50M
+    totalSupply: '100000000000000000000000000', // 100M
     issuerName: 'PISO Reserve Foundation',
     issuerWebsite: 'https://pisochain.com',
     originalNetwork: 'PISO Native L1',
@@ -18,7 +18,7 @@ const mockStablecoins = [
     isVerified: true,
     isDeprecated: false,
     holderCount: 1420,
-    dailyVolume: '320000000000000000000000', // 320k
+    dailyVolume: '320000000000000000000000',
     reserveProofURI: 'ipfs://bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi',
   },
   {

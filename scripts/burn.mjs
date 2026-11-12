@@ -56,26 +56,26 @@ async function main() {
   });
 
   const decimals = await publicClient.readContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'decimals',
   });
 
   const symbol = await publicClient.readContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'symbol',
   });
 
   const balance = await publicClient.readContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'balanceOf',
     args: [account.address],
   });
 
   const currentSupply = await publicClient.readContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'totalSupply',
   });
@@ -96,7 +96,7 @@ async function main() {
 
   console.log('[1/2] Broadcasting burn transaction to PISO Chain...');
   const txHash = await walletClient.writeContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'burn',
     args: [parsedAmount],
@@ -107,7 +107,7 @@ async function main() {
   await publicClient.waitForTransactionReceipt({ hash: txHash });
 
   const newSupply = await publicClient.readContract({
-    address: tokenAddress as `0x${string}`,
+    address: tokenAddress,
     abi: pisoStablecoinAbi,
     functionName: 'totalSupply',
   });

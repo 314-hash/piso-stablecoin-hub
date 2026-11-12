@@ -46,7 +46,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({ token, onClose }) 
         abi: pisoStablecoinAbi,
         functionName: 'transfer',
         args: [recipient as `0x${string}`, parsedAmount],
-      });
+      } as any);
     } catch (err: any) {
       setValidationError(err?.message || 'Transaction submission failed');
     }

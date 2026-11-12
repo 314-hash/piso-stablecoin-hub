@@ -12,11 +12,11 @@ export const App: React.FC = () => {
   // Default state populated with verified PISO stablecoin data
   const [tokens, setTokens] = useState<any[]>([
     {
-      address: '0x1821F246a27287a2187E1D634B8883030fA14731',
+      address: '0xeebb99cb2dd21fe53640034d3e16626ab68054a1',
       name: 'PISO Philippine Peso Stablecoin',
       symbol: 'PISOP',
       decimals: 18,
-      totalSupply: '50000000000000000000000000',
+      totalSupply: '100000000000000000000000000',
       issuerName: 'PISO Reserve Foundation',
       issuerWebsite: 'https://pisochain.com',
       originalNetwork: 'PISO Native L1',

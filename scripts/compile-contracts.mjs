@@ -43,6 +43,7 @@ async function compile() {
       'contracts/PisoStablecoin.sol': { content: pisoStablecoinSource },
     },
     settings: {
+      evmVersion: 'paris',
       optimizer: {
         enabled: true,
         runs: 200,

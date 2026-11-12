@@ -78,11 +78,17 @@ async function main() {
     abi: registryArtifact.abi,
     bytecode: registryArtifact.bytecode,
     args: [account.address], // initialAdmin
+    gas: 5000000n,
   });
   console.log(`      Transaction broadcast: ${registryTxHash}`);
   const registryReceipt = await publicClient.waitForTransactionReceipt({ hash: registryTxHash });
   const tokenRegistryAddress = registryReceipt.contractAddress;
-  console.log(`      [CONFIRMED] TokenRegistry deployed at: ${tokenRegistryAddress}\n`);
+  
+  const registryCode = await publicClient.getCode({ address: tokenRegistryAddress });
+  if (!registryCode || registryCode === '0x') {
+    throw new Error(`TokenRegistry deployment failed: no bytecode at ${tokenRegistryAddress}`);
+  }
+  console.log(`      [CONFIRMED] TokenRegistry deployed at: ${tokenRegistryAddress} (${registryCode.length / 2} bytes)\n`);
 
   // 2. Deploy reference PisoStablecoin (PISO-PHP Pegged Token)
   console.log('[2/3] Deploying reference PisoStablecoin (PISOP)...');
@@ -96,11 +102,17 @@ async function main() {
       account.address, // initialAdmin
       account.address, // initialMinter
     ],
+    gas: 5000000n,
   });
   console.log(`      Transaction broadcast: ${stablecoinTxHash}`);
   const stablecoinReceipt = await publicClient.waitForTransactionReceipt({ hash: stablecoinTxHash });
   const stablecoinAddress = stablecoinReceipt.contractAddress;
-  console.log(`      [CONFIRMED] PisoStablecoin deployed at: ${stablecoinAddress}\n`);
+
+  const stablecoinCode = await publicClient.getCode({ address: stablecoinAddress });
+  if (!stablecoinCode || stablecoinCode === '0x') {
+    throw new Error(`PisoStablecoin deployment failed: no bytecode at ${stablecoinAddress}`);
+  }
+  console.log(`      [CONFIRMED] PisoStablecoin deployed at: ${stablecoinAddress} (${stablecoinCode.length / 2} bytes)\n`);
 
   // 3. Register token on TokenRegistry
   console.log('[3/3] Registering PISOP on TokenRegistry...');
@@ -116,6 +128,7 @@ async function main() {
       'PISO Native L1',
       0, // NATIVE_ISSUED
     ],
+    gas: 1000000n,
   });
   await publicClient.waitForTransactionReceipt({ hash: registerTxHash });
   console.log(`      [CONFIRMED] Token successfully registered! Register Tx: ${registerTxHash}\n`);

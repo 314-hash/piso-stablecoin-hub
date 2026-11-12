@@ -7,11 +7,11 @@ reservesRouter.get('/', (c) => {
     data: [
       {
         symbol: 'PISOP',
-        tokenAddress: '0x1821F246a27287a2187E1D634B8883030fA14731',
-        circulatingSupply: '50,000,000.00 PISOP',
-        issuerReportedReservePHP: '50,150,000.00 PHP',
-        independentlyVerifiedReservePHP: '50,150,000.00 PHP',
-        coverageRatio: '100.30%',
+        tokenAddress: '0xeebb99cb2dd21fe53640034d3e16626ab68054a1',
+        circulatingSupply: '100,000,000.00 PISOP',
+        issuerReportedReservePHP: '100,150,000.00 PHP',
+        independentlyVerifiedReservePHP: '100,150,000.00 PHP',
+        coverageRatio: '100.15%',
         status: 'FULLY_COLLATERALIZED',
         isIndependentlyVerified: true,
         custodian: 'BDO Unibank / UnionBank Escrow Trust Account',
